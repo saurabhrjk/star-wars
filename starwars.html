@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Characters</title>
+        <style>
+            *{
+                background-image: url(a.jpg);
+                color: rgb(202, 235, 57);
+                font-size: 25px;
+                line-height: 50px;
+            }
+            h2{
+                font-size: 30px;
+            }
+            
+            button{
+                background-color: blue;
+                display: block;
+                text-align: center;
+                margin: auto;
+                width: 250px;
+                height: 60px;
+                border-color: aliceblue;
+            }
+            .column{
+                float: left;
+                width : 30%;
+            }
+            .button{
+                margin-top: 300px;
+                width: 100%;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h2>STAR-WARS character details : </h2>
+        
+            <div class = "row">
+                <div class="column">
+                    Name : </br>
+                    Birth-year : </br>
+                    Height : </br>
+                    Skin-color : </br>
+
+                </div>
+                <div class="column">
+                    <div id="name" ></div>
+                    <div id="birthyear"></div>
+                    <div id="height"></div>
+                    <div id="skincolor"></div>
+                    </div>
+
+            </div>
+                
+
+           
+            
+            
+        <div><button class="button" class="a">Next character</button></div>
+        
+
+        <script>
+            const name = document.getElementById("name");
+            const birthyear = document.getElementById("birthyear");
+            const height = document.getElementById("height");
+            const skincolor = document.getElementById("skincolor");
+            const button = document.querySelector(".button");
+
+            button.addEventListener('click',(e) => {
+                e.preventDefault()
+                
+
+
+                const randomnumber = Math.ceil(Math.random()*83)
+                fetch(`https://swapi.dev/api/people/${randomnumber}/`)
+                .then(response=>response.json())
+                .then(character =>
+                    {name.innerHTML = character['name'],
+                    birthyear.innerHTML = character['birt_hyear'],
+                    height.innerHTML = character['height'],
+                    skincolor.innerHTML = character['skin_color']
+                    
+                    }
+                )
+            })
+        </script>
+    </body>
+</html>
